@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncPreloadProcess } from "./states/preload/action";
 import BottomNavigation from "./components/BottomNavigation";
+import HeaderApp from "./components/HeaderApp";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -43,16 +44,14 @@ function App() {
   return (
     <>
       <Loading />
+      <HeaderApp />
       <div className="app-container">
-        {/* <header>
-          <Navigation authUser={authUser} signOut={onSignOut} />
-        </header>
         <main>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/forum/:id" element={<DetailPage />} />
+            {/* <Route path="/" element={<HomePage />} />
+            <Route path="/forum/:id" element={<DetailPage />} /> */}
           </Routes>
-        </main> */}
+        </main>
         <footer>
           <BottomNavigation />
         </footer>
