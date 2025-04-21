@@ -2,14 +2,15 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterInput from "../components/RegisterInput";
 import { MessagesSquare } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { asyncRegisterUser } from "../states/users/action";
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const dispatch = null; // @TODO: get dispatch function from store
+  const dispatch = useDispatch(); // @TODO: get dispatch function from store
 
   const onRegister = ({ name, email, password }) => {
-    // @TODO: dispatch async action to register
-
+    dispatch(asyncRegisterUser({ name, email, password }));
     navigate("/");
   };
 
