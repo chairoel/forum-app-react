@@ -3,14 +3,19 @@ import { Routes, Route } from "react-router-dom";
 import Loading from "./components/Loading";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncPreloadProcess } from "./states/preload/action";
 
 function App() {
-  const { authUser = null, isPreload = false } = {}; // @TODO: get authUser and isPreLoad state from store
+  const { authUser = null, isPreload = false } = useSelector(
+    (states) => states
+  );
 
-  const dispatch = null; // @TODO: get dispatch function from store
+  const dispatch = useDispatch(); // @TODO: get dispatch function from store
 
   useEffect(() => {
     // @TODO: dispatch async action to preload app
+    dispatch(asyncPreloadProcess());
   }, [dispatch]);
 
   const onSignOut = () => {
