@@ -7,18 +7,23 @@ import { asyncRegisterUser } from "../states/users/action";
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // @TODO: get dispatch function from store
+  const dispatch = useDispatch();
 
-  const onRegister = ({ name, email, password }) => {
-    dispatch(asyncRegisterUser({ name, email, password }));
-    navigate("/");
+  const onRegister = async ({ name, email, password }) => {
+    const success = await dispatch(
+      asyncRegisterUser({ name, email, password })
+    );
+
+    if (success) {
+      navigate("/login");
+    }
   };
 
   return (
     <section className="register-page">
       <header className="register-page__hero">
         <h1>
-          <MessagesSquare size={window.innerHeight * 0.5} />
+          <MessagesSquare size={window.innerHeight * 0.3} />
         </h1>
       </header>
       <article className="register-page__main">
@@ -26,7 +31,7 @@ function RegisterPage() {
         <RegisterInput register={onRegister} />
 
         <p>
-          Already have an account? <Link to="/">Login</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </article>
     </section>

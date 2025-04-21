@@ -1,12 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import LoginInput from "../components/LoginInput";
 import { MessagesSquare } from "lucide-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { asyncSetAuthUser } from "../states/auth/action";
 
 function LoginPage() {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  const { authUser } = useSelector((state) => state);
+
+  useEffect(() => {
+    if (authUser) {
+      navigate("/");
+    }
+  }, [authUser, navigate]);
 
   const onLogin = ({ email, password }) => {
     dispatch(asyncSetAuthUser({ email, password }));
@@ -16,13 +25,12 @@ function LoginPage() {
     <section className="login-page">
       <header className="login-page__hero">
         <h1>
-          <MessagesSquare size={window.innerHeight * 0.5} />
+          <MessagesSquare size={window.innerHeight * 0.3} />
         </h1>
       </header>
       <article className="login-page__main">
         <h2>
-          See <strong>The World</strong>, <br />
-          Through Open Space.
+          <strong>Login</strong>
         </h2>
 
         <LoginInput login={onLogin} />

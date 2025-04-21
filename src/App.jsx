@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncPreloadProcess } from "./states/preload/action";
 import BottomNavigation from "./components/BottomNavigation";
 import HeaderApp from "./components/HeaderApp";
+import { asyncUnsetAuthUser } from "./states/auth/action";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -20,25 +21,11 @@ function App() {
   }, [dispatch]);
 
   const onSignOut = () => {
-    // @TODO: dispatch async action to sign out
+    dispatch(asyncUnsetAuthUser());
   };
 
   if (isPreload) {
     return null;
-  }
-
-  if (authUser === null) {
-    return (
-      <>
-        <Loading />
-        <main>
-          <Routes>
-            <Route path="/*" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-          </Routes>
-        </main>
-      </>
-    );
   }
 
   return (
@@ -48,12 +35,13 @@ function App() {
       <div className="app-container">
         <main>
           <Routes>
-            {/* <Route path="/" element={<HomePage />} />
-            <Route path="/forum/:id" element={<DetailPage />} /> */}
+            <Route path="/*" element={<></>} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </main>
         <footer>
-          <BottomNavigation />
+          <BottomNavigation authUser={authUser} signOut={onSignOut} />
         </footer>
       </div>
     </>
