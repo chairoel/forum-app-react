@@ -31,7 +31,7 @@ function App() {
   return (
     <>
       <Loading />
-      <HeaderApp />
+      <HeaderApp authUser={authUser} />
       <div className="app-container">
         <main>
           <Routes>
