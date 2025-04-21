@@ -1,7 +1,7 @@
 import React from "react";
-import { IoEarthOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterInput from "../components/RegisterInput";
+import { MessagesSquare } from "lucide-react";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function RegisterPage() {
     <section className="register-page">
       <header className="register-page__hero">
         <h1>
-          <IoEarthOutline />
+          <MessagesSquare size={window.innerHeight * 0.5} />
         </h1>
       </header>
       <article className="register-page__main">

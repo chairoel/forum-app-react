@@ -1,7 +1,7 @@
 import React from "react";
-import { IoEarthOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import LoginInput from "../components/LoginInput";
+import { MessagesSquare } from "lucide-react";
 
 function LoginPage() {
   const dispatch = null; // @TODO: get dispatch function from store
@@ -14,7 +14,7 @@ function LoginPage() {
     <section className="login-page">
       <header className="login-page__hero">
         <h1>
-          <IoEarthOutline />
+          <MessagesSquare size={window.innerHeight * 0.5} />
         </h1>
       </header>
       <article className="login-page__main">
