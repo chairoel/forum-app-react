@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncPreloadProcess } from "./states/preload/action";
+import BottomNavigation from "./components/BottomNavigation";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -25,36 +26,39 @@ function App() {
     return null;
   }
 
-  // if (authUser === null) {
+  if (authUser === null) {
+    return (
+      <>
+        <Loading />
+        <main>
+          <Routes>
+            <Route path="/*" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Routes>
+        </main>
+      </>
+    );
+  }
+
   return (
     <>
       <Loading />
-      <main>
-        <Routes>
-          <Route path="/*" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Routes>
-      </main>
+      <div className="app-container">
+        {/* <header>
+          <Navigation authUser={authUser} signOut={onSignOut} />
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/forum/:id" element={<DetailPage />} />
+          </Routes>
+        </main> */}
+        <footer>
+          <BottomNavigation />
+        </footer>
+      </div>
     </>
   );
-  // }
-
-  // return (
-  //   <>
-  //     <Loading />
-  //     <div className="app-container">
-  //       <header>
-  //         <Navigation authUser={authUser} signOut={onSignOut} />
-  //       </header>
-  //       <main>
-  //         <Routes>
-  //           <Route path="/" element={<HomePage />} />
-  //           <Route path="/forum/:id" element={<DetailPage />} />
-  //         </Routes>
-  //       </main>
-  //     </div>
-  //   </>
-  // );
 }
 
 export default App;
