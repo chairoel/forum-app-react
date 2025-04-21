@@ -7,7 +7,7 @@ function RegisterPage() {
   const navigate = useNavigate();
   const dispatch = null; // @TODO: get dispatch function from store
 
-  const onRegister = ({ name, id, password }) => {
+  const onRegister = ({ name, email, password }) => {
     // @TODO: dispatch async action to register
 
     navigate("/");

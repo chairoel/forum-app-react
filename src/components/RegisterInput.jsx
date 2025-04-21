@@ -4,7 +4,7 @@ import useInput from "../hooks/useInput";
 
 function RegisterInput({ register }) {
   const [name, onNameChange] = useInput("");
-  const [id, onIdChange] = useInput("");
+  const [email, onEmailChange] = useInput("");
   const [password, onPasswordChange] = useInput("");
 
   return (
@@ -16,10 +16,10 @@ function RegisterInput({ register }) {
         placeholder="Name"
       />
       <input
-        type="text"
-        value={id}
-        onChange={onIdChange}
-        placeholder="Username"
+        type="email"
+        value={email}
+        onChange={onEmailChange}
+        placeholder="Email"
       />
       <input
         type="password"
@@ -27,7 +27,7 @@ function RegisterInput({ register }) {
         onChange={onPasswordChange}
         placeholder="Password"
       />
-      <button type="button" onClick={() => register({ name, id, password })}>
+      <button type="button" onClick={() => register({ name, email, password })}>
         Register
       </button>
     </form>
