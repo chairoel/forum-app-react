@@ -6,7 +6,7 @@ import { MessagesSquare } from "lucide-react";
 function LoginPage() {
   const dispatch = null; // @TODO: get dispatch function from store
 
-  const onLogin = ({ id, password }) => {
+  const onLogin = ({ email, password }) => {
     // @TODO: dispatch async action to login
   };
 
