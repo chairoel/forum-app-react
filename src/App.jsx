@@ -8,6 +8,7 @@ import { asyncPreloadProcess } from "./states/preload/action";
 import BottomNavigation from "./components/BottomNavigation";
 import HeaderApp from "./components/HeaderApp";
 import { asyncUnsetAuthUser } from "./states/auth/action";
+import LeaderboardPage from "./pages/LeaderboardPage";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -38,6 +39,7 @@ function App() {
             <Route path="/*" element={<></>} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/leaderboards" element={<LeaderboardPage />} />
           </Routes>
         </main>
         <footer>
