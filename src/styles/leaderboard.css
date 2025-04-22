@@ -1,0 +1,140 @@
+.leaderboard {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.leaderboard-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.leaderboard-table {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #e3f2fd;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.leaderboard-user-header {
+  flex: 1;
+}
+
+.leaderboard-score-header {
+  width: 80px;
+  text-align: right;
+}
+
+.leaderboard-body {
+  padding: 8px 0;
+}
+
+/* LeaderboardItem styles */
+.leaderboard-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.leaderboard-row:hover {
+  background-color: #f9f9f9;
+}
+
+.leaderboard-row:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-user {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.leaderboard-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+.leaderboard-user-row {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.leaderboard-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.leaderboard-subname {
+  font-weight: 300;
+  font-size: small;
+  color: #626262;
+}
+
+.leaderboard-score {
+  width: 80px;
+  text-align: right;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Styling for top 3 users */
+.leaderboard-score.rank-1 {
+  color: #f9a825; /* Gold */
+}
+
+.leaderboard-score.rank-2 {
+  color: #757575; /* Silver */
+}
+
+.leaderboard-score.rank-3 {
+  color: #a1887f; /* Bronze */
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 480px) {
+  .leaderboard-title {
+    font-size: 20px;
+  }
+
+  .leaderboard-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .leaderboard-name {
+    font-size: 14px;
+  }
+
+  .leaderboard-score {
+    font-size: 16px;
+  }
+}
