@@ -18,8 +18,8 @@ const ThreadItem = ({
   onClick,
 }) => {
   return (
-    <div className="thread" onClick={onClick} style={{ cursor: "pointer" }}>
-      <ThreadHeader title={title} tag={tag} />
+    <div className="thread">
+      <ThreadHeader title={title} tag={tag} onClick={onClick} />
       <ThreadBody body={body} />
       <ThreadFooter likes={likes} dislikes={dislikes} comments={comments} />
       <ThreadMeta createdBy={createdBy} createdAt={createdAt} />
