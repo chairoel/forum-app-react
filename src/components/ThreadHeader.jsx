@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../styles/thread.css";
+import ThreadTag from "./ThreadTag";
 
-const ThreadHeader = ({ title }) => {
+const ThreadHeader = ({ title, tag }) => {
   return (
     <div className="thread-header">
-      <span className="thread-tag">#redux</span>
+      <ThreadTag tag={tag} />
       <h2 className="thread-title">{title}</h2>
     </div>
   );

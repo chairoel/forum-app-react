@@ -8,6 +8,7 @@ import "../styles/thread.css";
 
 const ThreadItem = ({
   title,
+  tag,
   body,
   likes,
   dislikes,
@@ -17,7 +18,7 @@ const ThreadItem = ({
 }) => {
   return (
     <div className="thread">
-      <ThreadHeader title={title} />
+      <ThreadHeader title={title} tag={tag} />
       <ThreadBody body={body} />
       <ThreadFooter likes={likes} dislikes={dislikes} comments={comments} />
       <ThreadMeta createdBy={createdBy} createdAt={createdAt} />
