@@ -1,0 +1,66 @@
+/* thread.css */
+.test {
+  flex-direction: column;
+}
+
+.thread {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.thread-header {
+  display: flex;
+  align-items: center;
+}
+
+.thread-tag {
+  background-color: #007bff;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.thread-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.thread-body {
+  font-size: 14px;
+  color: #333;
+  margin: 12px 0;
+}
+
+.thread-footer {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.thread-footer span {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.thread-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding-top: 8px;
+  color: #999;
+}
+
+.thread-author {
+  font-weight: bold;
+}
+
+.thread-time {
+  font-style: italic;
+}
