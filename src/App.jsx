@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Loading from "./components/Loading";
 import LoginPage from "./pages/LoginPage";
@@ -9,6 +9,7 @@ import BottomNavigation from "./components/BottomNavigation";
 import HeaderApp from "./components/HeaderApp";
 import { asyncUnsetAuthUser } from "./states/auth/action";
 import LeaderboardPage from "./pages/LeaderboardPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -16,6 +17,8 @@ function App() {
   );
 
   const dispatch = useDispatch();
+
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     dispatch(asyncPreloadProcess());
@@ -25,6 +28,10 @@ function App() {
     dispatch(asyncUnsetAuthUser());
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query); // Update pencarian
+  };
+
   if (isPreload) {
     return null;
   }
@@ -32,11 +39,12 @@ function App() {
   return (
     <>
       <Loading />
-      <HeaderApp authUser={authUser} />
+      <HeaderApp authUser={authUser} onSearch={handleSearch} />
       <div className="app-container">
         <main>
           <Routes>
             <Route path="/*" element={<></>} />
+            <Route path="/" element={<HomePage searchQuery={searchQuery} />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/leaderboards" element={<LeaderboardPage />} />
