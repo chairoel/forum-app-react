@@ -9,9 +9,20 @@ const HomePage = ({ searchQuery }) => {
   const dispatch = useDispatch();
 
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   useEffect(() => {
     dispatch(asyncReceiveThreads());
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const categories = [...new Set(threads.map((thread) => thread.category))];
@@ -27,11 +38,7 @@ const HomePage = ({ searchQuery }) => {
   });
 
   const handleCategoryClick = (category) => {
-    if (selectedCategory === category) {
-      setSelectedCategory("");
-    } else {
-      setSelectedCategory(category);
-    }
+    setSelectedCategory(selectedCategory === category ? "" : category);
   };
 
   const handleThreadClick = () => {
@@ -39,7 +46,7 @@ const HomePage = ({ searchQuery }) => {
   };
 
   return (
-    <div>
+    <div className="home-container">
       <div className="categories">
         {categories.map((category) => (
           <ThreadTag
@@ -70,7 +77,14 @@ const HomePage = ({ searchQuery }) => {
             );
           })
         ) : (
-          <p>Data tidak ditemukan</p>
+          <div
+            className="not-found-container"
+            style={{
+              height: `${windowHeight * 0.8}px`,
+            }}
+          >
+            <p>Data tidak ditemukan</p>
+          </div>
         )}
       </div>
     </div>
