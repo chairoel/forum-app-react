@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ThreadItem from "../components/ThreadItem";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveThreads } from "../states/threads/action";
 import ThreadTag from "../components/ThreadTag";
+import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 
 const HomePage = ({ searchQuery }) => {
-  const { threads = [] } = useSelector((state) => state);
+  const { threads = [], users = [] } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   useEffect(() => {
-    dispatch(asyncReceiveThreads());
+    dispatch(asyncPopulateUsersAndThreads());
   }, []);
 
   useEffect(() => {
@@ -37,6 +37,11 @@ const HomePage = ({ searchQuery }) => {
     return isCategoryMatch && isSearchMatch;
   });
 
+  const threadsWithUser = filteredData.map((thread) => ({
+    ...thread,
+    user: users.find((user) => user.id === thread.ownerId),
+  }));
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(selectedCategory === category ? "" : category);
   };
@@ -59,8 +64,8 @@ const HomePage = ({ searchQuery }) => {
       </div>
 
       <div>
-        {filteredData.length > 0 ? (
-          filteredData.map((item) => {
+        {threadsWithUser.length > 0 ? (
+          threadsWithUser.map((item) => {
             return (
               <ThreadItem
                 key={item.id}
@@ -70,7 +75,7 @@ const HomePage = ({ searchQuery }) => {
                 likes={item.upVotesBy.length}
                 dislikes={item.downVotesBy.length}
                 comments={item.totalComments}
-                createdBy={item.ownerId}
+                createdBy={item.user?.name}
                 createdAt={item.createdAt}
                 onClick={handleThreadClick}
               />

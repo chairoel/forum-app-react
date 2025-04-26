@@ -19,17 +19,6 @@ function addThreadActionCreator(thread) {
   };
 }
 
-function asyncReceiveThreads() {
-  return async (dispatch) => {
-    try {
-      const threads = await api.getAllThreads();
-      dispatch(receiveThreadsActionCreator(threads));
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-}
-
 function asyncAddThread({ title, body, category = "" }) {
   return async (dispatch) => {
     try {
@@ -46,5 +35,4 @@ export {
   receiveThreadsActionCreator,
   addThreadActionCreator,
   asyncAddThread,
-  asyncReceiveThreads,
 };
