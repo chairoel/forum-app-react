@@ -10,6 +10,7 @@ import HeaderApp from "./components/HeaderApp";
 import { asyncUnsetAuthUser } from "./states/auth/action";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import HomePage from "./pages/HomePage";
+import ThreadDetailPage from "./pages/ThreadDetailPage";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -48,6 +49,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/leaderboards" element={<LeaderboardPage />} />
+            <Route path="/threads/:id" element={<ThreadDetailPage />} />
           </Routes>
         </main>
         <footer>

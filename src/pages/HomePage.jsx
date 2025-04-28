@@ -46,10 +46,6 @@ const HomePage = ({ searchQuery }) => {
     setSelectedCategory(selectedCategory === category ? "" : category);
   };
 
-  const handleThreadClick = () => {
-    alert("Thread diklik!");
-  };
-
   return (
     <div className="home-container">
       <div className="categories">
@@ -66,20 +62,7 @@ const HomePage = ({ searchQuery }) => {
       <div>
         {threadsWithUser.length > 0 ? (
           threadsWithUser.map((item) => {
-            return (
-              <ThreadItem
-                key={item.id}
-                title={item.title}
-                tag={item.category}
-                body={item.body}
-                likes={item.upVotesBy.length}
-                dislikes={item.downVotesBy.length}
-                comments={item.totalComments}
-                createdBy={item.user?.name}
-                createdAt={item.createdAt}
-                onClick={handleThreadClick}
-              />
-            );
+            return <ThreadItem key={item.id} data={item} />;
           })
         ) : (
           <div
