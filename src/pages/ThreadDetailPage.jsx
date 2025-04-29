@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { asyncReceiveThreadDetail } from "../states/threadDetail/action";
 import ThreadItem from "../components/ThreadItem";
+import CommentBox from "../components/CommentBox";
+import "../styles/thread.css";
 
 function ThreadDetailPage() {
   const { id } = useParams();
@@ -20,13 +22,19 @@ function ThreadDetailPage() {
     dispatch(asyncReceiveThreadDetail(id));
   }, [id, dispatch]);
 
+  const handleCommentSubmit = (comment) => {
+    console.log("Komentar baru:", comment);
+    // Proses data komentar di sini (misalnya kirim ke server)
+    console.log(authUser, "authUser");
+  };
+
   if (!threadDetail) {
     return <div>Loading...</div>; // Menampilkan loading saat data belum ada
   }
 
   // Kirimkan data threadDetail ke ThreadItem sebagai prop data
   return (
-    <div className="thread-detail-page">
+    <div className="thread-detail-container">
       <ThreadItem
         key={threadDetail.id}
         data={{
@@ -41,6 +49,12 @@ function ThreadDetailPage() {
           user: threadDetail.owner,
           isDetail: true,
         }}
+      />
+
+      <CommentBox
+        createdBy={authUser.name}
+        avatar={authUser.avatar}
+        onSubmit={handleCommentSubmit}
       />
     </div>
   );
