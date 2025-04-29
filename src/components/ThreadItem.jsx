@@ -43,7 +43,12 @@ const ThreadItem = ({ data }) => {
         onKeyDown={onThreadPress}
       />
       <ThreadBody body={body} isDetail={isDetail} />
-      <ThreadFooter likes={likes} dislikes={dislikes} comments={comments} />
+      <ThreadFooter
+        likes={likes}
+        dislikes={dislikes}
+        comments={comments}
+        isDetail={isDetail}
+      />
       <ThreadMeta
         avatar={user?.avatar}
         createdBy={user?.name}
