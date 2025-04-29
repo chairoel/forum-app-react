@@ -2,9 +2,11 @@ import React, { use } from "react";
 import "../styles/leaderboard.css";
 import PropTypes from "prop-types";
 
-const Avatar = ({ user }) => {
+const Avatar = ({ user, style }) => {
   const { name, avatar } = user;
-  return <img src={avatar} alt={name} className="leaderboard-avatar" />;
+  return (
+    <img src={avatar} alt={name} className="leaderboard-avatar" style={style} />
+  );
 };
 
 Avatar.propTypes = {

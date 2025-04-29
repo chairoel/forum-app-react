@@ -2,17 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../styles/thread.css";
 import { postedAt } from "../utils/postedAt";
+import Avatar from "./Avatar";
 
-const ThreadMeta = ({ createdBy, createdAt }) => {
+const ThreadMeta = ({ avatar, createdBy, createdAt }) => {
   return (
     <div className="thread-meta">
-      <span className="thread-author">{`Dibuat oleh ${createdBy}`}</span>
+      <div className="thread-author">
+        <p style={{ marginRight: "8px" }}>Dibuat oleh</p>
+        <Avatar
+          user={{ name: createdBy, avatar }}
+          style={{ width: "24px", height: "24px" }}
+        />
+        <p>{createdBy}</p>
+      </div>
       <span className="thread-time">{postedAt(createdAt)}</span>
     </div>
   );
 };
 
 ThreadMeta.propTypes = {
+  avatar: PropTypes.string,
   createdBy: PropTypes.string.isRequired,
   createdAt: PropTypes.number.isRequired,
 };

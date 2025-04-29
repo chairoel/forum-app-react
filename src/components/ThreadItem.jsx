@@ -42,7 +42,11 @@ const ThreadItem = ({ data }) => {
       />
       <ThreadBody body={body} />
       <ThreadFooter likes={likes} dislikes={dislikes} comments={comments} />
-      <ThreadMeta createdBy={user?.name} createdAt={createdAt} />
+      <ThreadMeta
+        avatar={user?.avatar}
+        createdBy={user?.name}
+        createdAt={createdAt}
+      />
     </div>
   );
 };
@@ -50,6 +54,7 @@ const ThreadItem = ({ data }) => {
 const userShape = {
   id: PropTypes.string,
   name: PropTypes.string,
+  avatar: PropTypes.string,
 };
 
 ThreadItem.propTypes = {
