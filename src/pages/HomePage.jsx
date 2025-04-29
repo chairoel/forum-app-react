@@ -62,7 +62,17 @@ const HomePage = ({ searchQuery }) => {
       <div>
         {threadsWithUser.length > 0 ? (
           threadsWithUser.map((item) => {
-            return <ThreadItem key={item.id} data={item} />;
+            return (
+              <ThreadItem
+                key={item.id}
+                data={{
+                  ...item,
+                  likes: item.upVotesBy.length,
+                  dislikes: item.downVotesBy.length,
+                  comments: item.totalComments,
+                }}
+              />
+            );
           })
         ) : (
           <div
