@@ -11,7 +11,7 @@ const ThreadMeta = ({ avatar, createdBy, createdAt }) => {
         <p style={{ marginRight: "8px" }}>Dibuat oleh</p>
         <Avatar
           user={{ name: createdBy, avatar }}
-          style={{ width: "24px", height: "24px", marginRight: "4px" }}
+          style={{ width: "20px", height: "20px", marginRight: "4px" }}
         />
         <p>{createdBy}</p>
       </div>

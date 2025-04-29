@@ -36,6 +36,7 @@ const ThreadItem = ({ data }) => {
   return (
     <div className="thread">
       <ThreadHeader
+        isDetail={isDetail}
         title={title}
         tag={category}
         onClick={onThreadClick}
