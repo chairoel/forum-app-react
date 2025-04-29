@@ -16,8 +16,9 @@ const ThreadItem = ({ data }) => {
     dislikes,
     comments,
     createdAt,
-    category: tag,
+    category,
     user,
+    isDetail = false,
   } = data;
 
   const navigate = useNavigate();
@@ -36,11 +37,11 @@ const ThreadItem = ({ data }) => {
     <div className="thread">
       <ThreadHeader
         title={title}
-        tag={tag}
+        tag={category}
         onClick={onThreadClick}
         onKeyDown={onThreadPress}
       />
-      <ThreadBody body={body} />
+      <ThreadBody body={body} isDetail={isDetail} />
       <ThreadFooter likes={likes} dislikes={dislikes} comments={comments} />
       <ThreadMeta
         avatar={user?.avatar}
@@ -59,7 +60,7 @@ const userShape = {
 
 ThreadItem.propTypes = {
   id: PropTypes.string.isRequired,
-  tag: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   likes: PropTypes.number.isRequired,
@@ -67,6 +68,7 @@ ThreadItem.propTypes = {
   comments: PropTypes.number.isRequired,
   createdAt: PropTypes.number.isRequired,
   user: PropTypes.shape(userShape),
+  isDetail: PropTypes.bool,
 };
 
 export default ThreadItem;

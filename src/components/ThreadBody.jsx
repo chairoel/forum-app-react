@@ -4,9 +4,11 @@ import "../styles/thread.css";
 
 const MAX_LENGTH = 268;
 
-const ThreadBody = ({ body }) => {
+const ThreadBody = ({ body, isDetail = false }) => {
   const truncatedBody =
-    body.length > MAX_LENGTH ? body.substring(0, MAX_LENGTH) + "..." : body; // Potong teks jika terlalu panjang
+    isDetail || (body || "").length <= MAX_LENGTH
+      ? body
+      : body.substring(0, MAX_LENGTH) + "...";
 
   return (
     <div

@@ -6,15 +6,15 @@ const ThreadFooter = ({ likes, dislikes, comments }) => {
   return (
     <div className="thread-footer">
       <span className="thread-likes">
-        <ThumbsUp size={16} />
+        <ThumbsUp size={16} style={{ marginRight: "4px" }} />
         {likes}
       </span>
       <span className="thread-dislikes">
-        <ThumbsDown size={16} />
+        <ThumbsDown size={16} style={{ marginRight: "4px" }} />
         {dislikes}
       </span>
       <span className="thread-comments">
-        <MessageCircle size={16} />
+        <MessageCircle size={16} style={{ marginRight: "4px" }} />
         {comments}
       </span>
     </div>
