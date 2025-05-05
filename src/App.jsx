@@ -18,13 +18,11 @@ function App() {
   // );
 
   const { isPreload, authUser } = useSelector(
-    (state) => (
-      {
-        isPreload: state.isPreload,
-        authUser: state.authUser,
-      },
-      shallowEqual
-    )
+    (state) => ({
+      isPreload: state.isPreload,
+      authUser: state.authUser,
+    }),
+    shallowEqual
   );
 
   const dispatch = useDispatch();
