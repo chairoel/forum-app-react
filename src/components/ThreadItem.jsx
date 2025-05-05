@@ -18,19 +18,28 @@ const ThreadItem = ({ data }) => {
     createdAt,
     category,
     user,
+    authUser,
     isDetail = false,
   } = data;
 
   const navigate = useNavigate();
 
   const onThreadClick = () => {
-    navigate(`/threads/${id}`);
+    handleNavigate();
   };
 
   const onThreadPress = (event) => {
     if (event.key === "Enter" || event.key === " ") {
-      navigate(`/threads/${id}`);
+      handleNavigate();
     }
+  };
+
+  const handleNavigate = () => {
+    if (!authUser) {
+      navigate("/login");
+      return;
+    }
+    navigate(`/threads/${id}`);
   };
 
   return (

@@ -5,7 +5,13 @@ import ThreadTag from "../components/ThreadTag";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 
 const HomePage = ({ searchQuery }) => {
-  const { threads = [], users = [] } = useSelector((state) => state);
+  // const { threads = [], users = [] } = useSelector((state) => state);
+  const { threads, users, authUser } = useSelector((state) => ({
+    users: state.users,
+    threads: state.threads,
+    authUser: state.authUser,
+  }));
+
   const dispatch = useDispatch();
 
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -70,6 +76,7 @@ const HomePage = ({ searchQuery }) => {
                   likes: item.upVotesBy.length,
                   dislikes: item.downVotesBy.length,
                   comments: item.totalComments,
+                  authUser: authUser,
                 }}
               />
             );
