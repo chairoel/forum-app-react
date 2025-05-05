@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Loading from "./components/Loading";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { asyncPreloadProcess } from "./states/preload/action";
 import BottomNavigation from "./components/BottomNavigation";
 import HeaderApp from "./components/HeaderApp";
@@ -13,8 +13,18 @@ import HomePage from "./pages/HomePage";
 import ThreadDetailPage from "./pages/ThreadDetailPage";
 
 function App() {
-  const { authUser = null, isPreload = false } = useSelector(
-    (states) => states
+  // const { authUser = null, isPreload = false } = useSelector(
+  //   (states) => states
+  // );
+
+  const { isPreload, authUser } = useSelector(
+    (state) => (
+      {
+        isPreload: state.isPreload,
+        authUser: state.authUser,
+      },
+      shallowEqual
+    )
   );
 
   const dispatch = useDispatch();

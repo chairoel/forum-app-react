@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ThreadItem from "../components/ThreadItem";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import ThreadTag from "../components/ThreadTag";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 
 const HomePage = ({ searchQuery }) => {
-  // const { threads = [], users = [] } = useSelector((state) => state);
-  const { threads, users, authUser } = useSelector((state) => ({
-    users: state.users,
-    threads: state.threads,
-    authUser: state.authUser,
-  }));
+  const { threads, users, authUser } = useSelector(
+    (state) => ({
+      users: state.users,
+      threads: state.threads,
+      authUser: state.authUser,
+    }),
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
 

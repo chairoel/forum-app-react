@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import LeaderboardItem from "../components/LeaderboardItem";
 import { asyncReceiveLeaderboards } from "../states/leaderboards/action";
 
 function LeaderboardPage() {
-  const { leaderboards = [] } = useSelector((state) => state);
+  const { leaderboards } = useSelector(
+    (state) => ({
+      leaderboards: state.leaderboards,
+    }),
+    shallowEqual
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
