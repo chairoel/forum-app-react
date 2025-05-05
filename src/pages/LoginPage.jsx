@@ -2,14 +2,20 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginInput from "../components/LoginInput";
 import { MessagesSquare } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { asyncSetAuthUser } from "../states/auth/action";
 
 function LoginPage() {
+  const { authUser } = useSelector(
+    (state) => ({
+      authUser: state.authUser,
+    }),
+    shallowEqual
+  );
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const { authUser } = useSelector((state) => state);
 
   useEffect(() => {
     if (authUser) {

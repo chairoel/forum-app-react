@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { asyncReceiveThreadDetail } from "../states/threadDetail/action";
 import ThreadItem from "../components/ThreadItem";
@@ -9,11 +9,13 @@ import "../styles/thread.css";
 function ThreadDetailPage() {
   const { id } = useParams();
 
-  // Ambil data threadDetail dan authUser dari Redux store
-  const { threadDetail, authUser } = useSelector((state) => ({
-    threadDetail: state.threadDetail,
-    authUser: state.authUser,
-  }));
+  const { threadDetail, authUser } = useSelector(
+    (state) => ({
+      threadDetail: state.threadDetail,
+      authUser: state.authUser,
+    }),
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
 
