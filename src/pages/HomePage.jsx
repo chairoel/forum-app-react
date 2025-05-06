@@ -3,6 +3,8 @@ import ThreadItem from "../components/ThreadItem";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import ThreadTag from "../components/ThreadTag";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
+import { Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = ({ searchQuery }) => {
   const { threads, users, authUser } = useSelector(
@@ -15,6 +17,7 @@ const HomePage = ({ searchQuery }) => {
   );
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
@@ -52,6 +55,10 @@ const HomePage = ({ searchQuery }) => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(selectedCategory === category ? "" : category);
+  };
+
+  const handleCreateThread = () => {
+    navigate("/new");
   };
 
   return (
@@ -94,6 +101,16 @@ const HomePage = ({ searchQuery }) => {
           </div>
         )}
       </div>
+
+      {authUser && (
+        <button
+          className="fab"
+          onClick={handleCreateThread}
+          aria-label="Tambah diskusi"
+        >
+          <Plus size={20} color="white" />
+        </button>
+      )}
     </div>
   );
 };

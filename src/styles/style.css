@@ -132,6 +132,28 @@ main {
   font-size: 12px;
 }
 
+.fab {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  background-color: #2d3748;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+  z-index: 100;
+}
+
+.fab:hover {
+  background-color: #1a202c;
+}
+
 @media screen and (min-width: 850px) {
   .login-page,
   .register-page {
