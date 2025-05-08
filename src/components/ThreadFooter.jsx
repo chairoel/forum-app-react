@@ -1,8 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { ThumbsUp, ThumbsDown, MessageCircle } from "lucide-react";
 import "../styles/thread.css";
 
-const ThreadFooter = ({ likes, dislikes, comments, isDetail = false }) => {
+const ThreadFooter = ({
+  likes = 0,
+  dislikes = 0,
+  comments = 0,
+  isDetail = false,
+}) => {
   return (
     <div className="thread-footer">
       <span className="thread-likes">
@@ -21,6 +27,13 @@ const ThreadFooter = ({ likes, dislikes, comments, isDetail = false }) => {
       )}
     </div>
   );
+};
+
+ThreadFooter.propTypes = {
+  likes: PropTypes.number,
+  dislikes: PropTypes.number,
+  comments: PropTypes.number,
+  isDetail: PropTypes.bool,
 };
 
 export default ThreadFooter;

@@ -6,6 +6,7 @@
 .home-container {
   max-width: 1200px;
   padding-top: 20px;
+  padding-bottom: 20px;
   justify-content: center;
   margin: 0 auto;
 }
