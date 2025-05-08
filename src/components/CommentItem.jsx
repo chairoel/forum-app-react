@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "../styles/comment.css";
 import ThreadFooter from "./ThreadFooter";
 import CommentHeader from "./CommentHeader";
+import ThreadBody from "./ThreadBody";
 
 const CommentItem = ({ user, createdAt, commentText, likes, dislikes }) => {
   return (
@@ -12,7 +13,7 @@ const CommentItem = ({ user, createdAt, commentText, likes, dislikes }) => {
         createdBy={user?.name}
         createdAt={createdAt}
       />
-      <div className="comment-body">{commentText}</div>
+      <ThreadBody body={commentText} isDetail={true} />
       <ThreadFooter likes={likes} dislikes={dislikes} isDetail={true} />
     </div>
   );

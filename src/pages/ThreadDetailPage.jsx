@@ -5,6 +5,7 @@ import { asyncReceiveThreadDetail } from "../states/threadDetail/action";
 import ThreadItem from "../components/ThreadItem";
 import CommentBox from "../components/CommentBox";
 import "../styles/thread.css";
+import CommentItem from "../components/CommentItem";
 
 function ThreadDetailPage() {
   const { id } = useParams();
@@ -31,10 +32,9 @@ function ThreadDetailPage() {
   };
 
   if (!threadDetail) {
-    return <div>Loading...</div>; // Menampilkan loading saat data belum ada
+    return <div>Loading...</div>;
   }
 
-  // Kirimkan data threadDetail ke ThreadItem sebagai prop data
   return (
     <div className="thread-detail-container">
       <ThreadItem
@@ -58,6 +58,24 @@ function ThreadDetailPage() {
         avatar={authUser.avatar}
         onSubmit={handleCommentSubmit}
       />
+
+      <h2 className="comment-title">{`Komentar (${threadDetail.comments.length})`}</h2>
+
+      <div>
+        {threadDetail.comments.length > 0 &&
+          threadDetail.comments.map((item) => {
+            return (
+              <CommentItem
+                key={item.id}
+                user={item.owner}
+                createdAt={item.createdAt}
+                commentText={item.content}
+                likes={item.upVotesBy.length}
+                dislikes={item.downVotesBy.length}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 }
