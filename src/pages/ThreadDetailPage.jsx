@@ -6,6 +6,7 @@ import ThreadItem from "../components/ThreadItem";
 import CommentBox from "../components/CommentBox";
 import "../styles/thread.css";
 import CommentItem from "../components/CommentItem";
+import { asyncAddComment } from "../states/comments/action";
 
 function ThreadDetailPage() {
   const { id } = useParams();
@@ -21,14 +22,11 @@ function ThreadDetailPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Dispatch action untuk mendapatkan data thread berdasarkan id
     dispatch(asyncReceiveThreadDetail(id));
   }, [id, dispatch]);
 
-  const handleCommentSubmit = (comment) => {
-    console.log("Komentar baru:", comment);
-    // Proses data komentar di sini (misalnya kirim ke server)
-    console.log(authUser, "authUser");
+  const handleCommentSubmit = async (threadId, { content }) => {
+    await dispatch(asyncAddComment(threadId, { content }));
   };
 
   if (!threadDetail) {
@@ -56,7 +54,9 @@ function ThreadDetailPage() {
       <CommentBox
         createdBy={authUser.name}
         avatar={authUser.avatar}
-        onSubmit={handleCommentSubmit}
+        onSubmit={(comment) => {
+          handleCommentSubmit(threadDetail.id, comment);
+        }}
       />
 
       <h2 className="comment-title">{`Komentar (${threadDetail.comments.length})`}</h2>

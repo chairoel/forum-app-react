@@ -12,7 +12,7 @@ const CommentBox = ({ avatar, createdBy, onSubmit }) => {
 
   const handleSubmit = () => {
     if (onSubmit) {
-      onSubmit(comment);
+      onSubmit({ content: comment });
     }
     setComment("");
   };
