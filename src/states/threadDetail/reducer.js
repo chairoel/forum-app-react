@@ -8,6 +8,14 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     case ActionType.CLEAR_THREAD_DETAIL:
       return null;
 
+    case ActionType.ADD_COMMENT_TO_THREAD:
+      if (!threadDetail) return threadDetail;
+
+      return {
+        ...threadDetail,
+        comments: [action.payload.comment, ...threadDetail.comments],
+      };
+
     default:
       return threadDetail;
   }

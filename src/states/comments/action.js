@@ -1,4 +1,5 @@
 import api from "../../utils/api";
+import { addCommentToThreadActionCreator } from "../threadDetail/action";
 
 const ActionType = {
   ADD_COMMENT: "ADD_COMMENT",
@@ -16,6 +17,7 @@ function asyncAddComment(threadId, { content }) {
     try {
       const comment = await api.createComment(threadId, { content });
       dispatch(addCommentActionCreator(comment));
+      dispatch(addCommentToThreadActionCreator(comment));
       return true;
     } catch (error) {
       alert(error.message);
