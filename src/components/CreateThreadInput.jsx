@@ -1,47 +1,43 @@
-import React, { useState } from "react";
-import "../styles/discussion.css";
+import React from "react";
+import PropTypes from "prop-types";
+import useInput from "../hooks/useInput";
 
-const CreateThreadInput = () => {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ title, category, description });
-    alert("Thread berhasil dibuat!");
-    setTitle("");
-    setCategory("");
-    setDescription("");
-  };
+function CreateThreadInput({ createThread }) {
+  const [title, onTitleChange] = useInput("");
+  const [category, onCategoryChange] = useInput("");
+  const [description, onDescriptionChange] = useInput("");
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Masukkan judul Thread"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Contoh: Teknologi, Pendidikan, Lifestyle"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Tuliskan isi threadmu di sini..."
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <button type="submit">Buat</button>
-      </form>
-    </div>
+    <form className="create-thread-input">
+      <input
+        type="text"
+        value={title}
+        onChange={onTitleChange}
+        placeholder="Judul Diskusi"
+      />
+      <input
+        type="text"
+        value={category}
+        onChange={onCategoryChange}
+        placeholder="Kategori"
+      />
+      <textarea
+        value={description}
+        onChange={onDescriptionChange}
+        placeholder="Isi Diskusi"
+      />
+      <button
+        type="button"
+        onClick={() => createThread({ title, category, description })}
+      >
+        Buat Diskusi
+      </button>
+    </form>
   );
+}
+
+CreateThreadInput.propTypes = {
+  createThread: PropTypes.func.isRequired,
 };
 
 export default CreateThreadInput;

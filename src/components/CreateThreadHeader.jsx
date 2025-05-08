@@ -1,9 +1,8 @@
 import React from "react";
-import "../styles/discussion.css";
 
 const CreateThreadHeader = () => {
   return (
-    <div className="discussion-header-container">
+    <div className="thread-header-container">
       <h2>Buat Diskusi Baru</h2>
     </div>
   );

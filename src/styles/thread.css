@@ -102,3 +102,77 @@
 .thread-time {
   font-style: italic;
 }
+
+.thread-header-container {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 0 24px;
+  font-family: system-ui, sans-serif;
+}
+
+.thread-header-container h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.create-thread-input {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 30px 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  font-family: "Open Sans", sans-serif;
+}
+
+.create-thread-input form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Memastikan elemen memiliki jarak antar elemen */
+}
+
+.create-thread-input input,
+.create-thread-input textarea {
+  display: block;
+  width: 100%;
+  padding: 12px 8px;
+  margin: 8px 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-dark-color);
+  box-sizing: border-box; /* Menjaga input tetap pada ukuran yang tepat */
+}
+
+.create-thread-input input:focus,
+.create-thread-input textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  background-color: #ffffff;
+}
+
+.create-thread-input textarea {
+  height: 160px;
+  resize: vertical; /* Agar textarea bisa diubah ukurannya secara vertikal */
+}
+
+.create-thread-input button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px 8px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  border: 0;
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  box-sizing: border-box; /* Menjaga tombol tetap pada ukuran yang tepat */
+}
+
+.create-thread-input button:hover {
+  background-color: #111827;
+}
