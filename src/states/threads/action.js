@@ -19,13 +19,15 @@ function addThreadActionCreator(thread) {
   };
 }
 
-function asyncAddThread({ title, body, category = "" }) {
+function asyncAddThread({ title, body, category }) {
   return async (dispatch) => {
     try {
       const thread = await api.createThread({ title, body, category });
       dispatch(addThreadActionCreator(thread));
+      return true;
     } catch (error) {
       alert(error.message);
+      return false;
     }
   };
 }

@@ -28,7 +28,7 @@ function CreateThreadInput({ createThread }) {
       />
       <button
         type="button"
-        onClick={() => createThread({ title, category, description })}
+        onClick={() => createThread({ title, body: description, category })}
       >
         Buat Diskusi
       </button>
