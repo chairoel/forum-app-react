@@ -1,12 +1,11 @@
 import api from "../../utils/api";
 import { receiveThreadsActionCreator } from "../threads/action";
 import { receiveUsersActionCreator } from "../users/action";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
 
-/**
- * @TODO: Define all the actions (creator) that uses a combination of actions from various domain
- */
 function asyncPopulateUsersAndThreads() {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const users = await api.getAllUsers();
       const threads = await api.getAllThreads();
@@ -15,6 +14,8 @@ function asyncPopulateUsersAndThreads() {
       dispatch(receiveThreadsActionCreator(threads));
     } catch (error) {
       alert(error.message);
+    } finally {
+      dispatch(hideLoading());
     }
   };
 }

@@ -12,6 +12,7 @@ import CommentBox from "../components/CommentBox";
 import "../styles/thread.css";
 import CommentItem from "../components/CommentItem";
 import { asyncAddComment } from "../states/comments/action";
+import Loading from "../components/Loading";
 
 function ThreadDetailPage() {
   const { id } = useParams();
@@ -62,7 +63,7 @@ function ThreadDetailPage() {
   };
 
   if (!threadDetail) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   const upVotesBy = Array.isArray(threadDetail.upVotesBy)

@@ -8,6 +8,7 @@ import threadDetailReducer from "./threadDetail/reducer";
 import commentsReducer from "./comments/reducer";
 import voteThreadsReducer from "./votethreads/reducer";
 import voteCommentsReducer from "./votecomments/reducer";
+import { loadingBarReducer } from "react-redux-loading-bar";
 
 const store = configureStore({
   reducer: {
@@ -20,11 +21,8 @@ const store = configureStore({
     comments: commentsReducer,
     voteThreads: voteThreadsReducer,
     voteComments: voteCommentsReducer,
+    loadingBar: loadingBarReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      immutableCheck: false,
-    }),
 });
 
 export default store;
