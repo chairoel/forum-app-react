@@ -7,7 +7,13 @@ import ThreadMeta from "./ThreadMeta";
 import "../styles/thread.css";
 import { useNavigate } from "react-router-dom";
 
-const ThreadItem = ({ data }) => {
+const ThreadItem = ({
+  data,
+  onLikeClick,
+  onDislikeClick,
+  initialLikeActive = false,
+  initialDislikeActive = false,
+}) => {
   const {
     id,
     title,
@@ -57,6 +63,12 @@ const ThreadItem = ({ data }) => {
         dislikes={dislikes}
         comments={comments}
         isDetail={isDetail}
+        onLikeClick={onLikeClick}
+        onDislikeClick={onDislikeClick}
+        initialLikeActive={initialLikeActive}
+        initialDislikeActive={initialDislikeActive}
+        likesClickable={!!authUser}
+        dislikesClickable={!!authUser}
       />
       <ThreadMeta
         avatar={user?.avatar}
@@ -74,16 +86,23 @@ const userShape = {
 };
 
 ThreadItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  likes: PropTypes.number.isRequired,
-  dislikes: PropTypes.number.isRequired,
-  comments: PropTypes.number.isRequired,
-  createdAt: PropTypes.number.isRequired,
-  user: PropTypes.shape(userShape),
-  isDetail: PropTypes.bool,
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    dislikes: PropTypes.number.isRequired,
+    comments: PropTypes.number.isRequired,
+    createdAt: PropTypes.number.isRequired,
+    user: PropTypes.shape(userShape),
+    authUser: PropTypes.object,
+    isDetail: PropTypes.bool,
+  }).isRequired,
+  onLikeClick: PropTypes.func,
+  onDislikeClick: PropTypes.func,
+  initialLikeActive: PropTypes.bool,
+  initialDislikeActive: PropTypes.bool,
 };
 
 export default ThreadItem;

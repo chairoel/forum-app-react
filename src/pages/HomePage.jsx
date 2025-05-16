@@ -3,6 +3,11 @@ import ThreadItem from "../components/ThreadItem";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import ThreadTag from "../components/ThreadTag";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
+import {
+  asyncUpVoteProcess,
+  asyncDownVoteProcess,
+  asyncNeutralVoteProcess,
+} from "../states/votes/action";
 import { Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +17,7 @@ const HomePage = ({ searchQuery }) => {
       users: state.users,
       threads: state.threads,
       authUser: state.authUser,
+      votes: state.votes,
     }),
     shallowEqual
   );
@@ -24,7 +30,7 @@ const HomePage = ({ searchQuery }) => {
 
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,7 +50,7 @@ const HomePage = ({ searchQuery }) => {
       : true;
     const isSearchMatch = item.title
       .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+      .includes(searchQuery?.toLowerCase() || "");
     return isCategoryMatch && isSearchMatch;
   });
 
@@ -59,6 +65,32 @@ const HomePage = ({ searchQuery }) => {
 
   const handleCreateThread = () => {
     navigate("/new");
+  };
+
+  const handleLikeClick = (value, threadId) => {
+    if (!authUser) {
+      navigate("/login");
+      return;
+    }
+
+    if (value) {
+      dispatch(asyncUpVoteProcess(threadId));
+    } else {
+      dispatch(asyncNeutralVoteProcess(threadId));
+    }
+  };
+
+  const handleDislikeClick = (value, threadId) => {
+    if (!authUser) {
+      navigate("/login");
+      return;
+    }
+
+    if (value) {
+      dispatch(asyncDownVoteProcess(threadId));
+    } else {
+      dispatch(asyncNeutralVoteProcess(threadId));
+    }
   };
 
   return (
@@ -77,16 +109,35 @@ const HomePage = ({ searchQuery }) => {
       <div>
         {threadsWithUser.length > 0 ? (
           threadsWithUser.map((item) => {
+            const upVotesBy = Array.isArray(item.upVotesBy)
+              ? item.upVotesBy
+              : [];
+            const downVotesBy = Array.isArray(item.downVotesBy)
+              ? item.downVotesBy
+              : [];
+
+            const hasUpVoted = authUser
+              ? upVotesBy.includes(authUser.id)
+              : false;
+            const hasDownVoted = authUser
+              ? downVotesBy.includes(authUser.id)
+              : false;
+
             return (
               <ThreadItem
                 key={item.id}
                 data={{
                   ...item,
-                  likes: item.upVotesBy.length,
-                  dislikes: item.downVotesBy.length,
+                  likes: upVotesBy.length,
+                  dislikes: downVotesBy.length,
                   comments: item.totalComments,
                   authUser: authUser,
+                  isDetail: false,
                 }}
+                onLikeClick={(value) => handleLikeClick(value, item.id)}
+                onDislikeClick={(value) => handleDislikeClick(value, item.id)}
+                initialLikeActive={hasUpVoted}
+                initialDislikeActive={hasDownVoted}
               />
             );
           })
