@@ -7,6 +7,7 @@ import threadsReducer from "./threads/reducer";
 import threadDetailReducer from "./threadDetail/reducer";
 import commentsReducer from "./comments/reducer";
 import voteThreadsReducer from "./votethreads/reducer";
+import voteCommentsReducer from "./votecomments/reducer";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     threadDetail: threadDetailReducer,
     comments: commentsReducer,
     voteThreads: voteThreadsReducer,
+    voteComments: voteCommentsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
