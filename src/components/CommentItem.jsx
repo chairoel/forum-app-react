@@ -10,7 +10,7 @@ import {
   asyncUpVoteProcess,
   asyncDownVoteProcess,
   asyncNeutralVoteProcess,
-} from "../states/votecomments/action";
+} from "../states/voteComments/action";
 import { shallowEqual } from "react-redux";
 
 const CommentItem = ({

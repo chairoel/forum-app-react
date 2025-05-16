@@ -7,7 +7,7 @@ import {
   asyncUpVoteProcess,
   asyncDownVoteProcess,
   asyncNeutralVoteProcess,
-} from "../states/votethreads/action";
+} from "../states/voteThreads/action";
 import { Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
