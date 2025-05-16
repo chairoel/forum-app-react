@@ -14,10 +14,6 @@ import ThreadDetailPage from "./pages/ThreadDetailPage";
 import CreateThreadPage from "./pages/CreateThreadPage";
 
 function App() {
-  // const { authUser = null, isPreload = false } = useSelector(
-  //   (states) => states
-  // );
-
   const { isPreload, authUser } = useSelector(
     (state) => ({
       isPreload: state.isPreload,
@@ -39,7 +35,7 @@ function App() {
   };
 
   const handleSearch = (query) => {
-    setSearchQuery(query); // Update pencarian
+    setSearchQuery(query);
   };
 
   if (isPreload) {
