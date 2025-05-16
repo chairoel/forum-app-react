@@ -1,5 +1,5 @@
 import { ActionType as ThreadsActionType } from "./action";
-import { ActionType as VotesActionType } from "../votes/action";
+import { ActionType as VotesActionType } from "../votethreads/action";
 
 function threadsReducer(threads = [], action = {}) {
   switch (action.type) {
