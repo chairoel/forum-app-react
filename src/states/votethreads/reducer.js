@@ -1,6 +1,6 @@
 import { ActionType } from "./action";
 
-function votesReducer(
+function voteThreadsReducer(
   isUpVote = true,
   isDownVote = false,
   isNeutralVote = false,
@@ -37,4 +37,4 @@ function votesReducer(
   }
 }
 
-export default votesReducer;
+export default voteThreadsReducer;
