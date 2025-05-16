@@ -17,7 +17,7 @@ const HomePage = ({ searchQuery }) => {
       users: state.users,
       threads: state.threads,
       authUser: state.authUser,
-      votes: state.votes,
+      voteThreads: state.voteThreads,
     }),
     shallowEqual
   );
