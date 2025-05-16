@@ -129,14 +129,24 @@ function ThreadDetailPage() {
       <div>
         {threadDetail.comments.length > 0 &&
           threadDetail.comments.map((item) => {
+            const commentUpVotesBy = Array.isArray(item.upVotesBy)
+              ? item.upVotesBy
+              : [];
+            const commentDownVotesBy = Array.isArray(item.downVotesBy)
+              ? item.downVotesBy
+              : [];
+
             return (
               <CommentItem
                 key={item.id}
+                commentId={item.id}
                 user={item.owner}
                 createdAt={item.createdAt}
                 commentText={item.content}
-                likes={item.upVotesBy ? item.upVotesBy.length : 0}
-                dislikes={item.downVotesBy ? item.downVotesBy.length : 0}
+                likes={commentUpVotesBy.length}
+                dislikes={commentDownVotesBy.length}
+                upVotesBy={commentUpVotesBy}
+                downVotesBy={commentDownVotesBy}
               />
             );
           })}
